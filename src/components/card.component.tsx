@@ -62,24 +62,35 @@ const CardBody = styled.div`
 	}
 `;
 
-export default function Card(): ReactElement {
+interface Props {
+	img: string;
+	country: string;
+	population: string;
+	region: string;
+	capital: string;
+}
+
+export default function Card(props: Props): ReactElement {
 	return (
 		<CardStyled>
 			<CardImage>
-				<img src="https://restcountries.eu/data/mex.svg" alt="flag" />
+				<img src={props.img} alt="flag" />
 			</CardImage>
 
 			<CardBody>
-				<h2>Mexico</h2>
+				<h2>{props.country}</h2>
 				<div>
 					<p>
-						<span>Population: </span>122,273,473
+						<span>Population: </span>
+						{props.population}
 					</p>
 					<p>
-						<span>Region: </span>Americas
+						<span>Region: </span>
+						{props.region}
 					</p>
 					<p>
-						<span>Capital: </span>Mexico City
+						<span>Capital: </span>
+						{props.capital}
 					</p>
 				</div>
 			</CardBody>
