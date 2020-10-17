@@ -50,8 +50,8 @@ const FilterOption = styled.option`
 export default function Filter(): ReactElement {
 	return (
 		<FilterOptions>
-			<FilterSelected>
-				<FilterOption value="default" selected disabled>
+			<FilterSelected defaultValue="default">
+				<FilterOption value="default" disabled>
 					Filter By Name
 				</FilterOption>
 				<FilterOption value="africa"> Africa </FilterOption>
