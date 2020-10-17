@@ -1,6 +1,14 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
+export const FilterContainer = styled.div`
+	@media (min-width: 768px) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+`;
+
 const FilterOptions = styled.div`
 	position: relative;
 	max-width: 14rem;
@@ -52,7 +60,7 @@ export default function Filter(): ReactElement {
 		<FilterOptions>
 			<FilterSelected defaultValue="default">
 				<FilterOption value="default" disabled>
-					Filter By Name
+					Filter By Region
 				</FilterOption>
 				<FilterOption value="africa"> Africa </FilterOption>
 				<FilterOption value="americas"> America </FilterOption>

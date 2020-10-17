@@ -27,7 +27,7 @@ const SearchContainer = styled.div`
 `;
 
 const SearchInput = styled.input`
-	padding: 1.2rem 1.5rem;
+	padding: 1.3rem 1.5rem;
 
 	border-radius: 0.5rem;
 	background-color: ${(props) => props.theme.colors.element};
