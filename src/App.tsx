@@ -1,11 +1,16 @@
 import React, { ReactElement, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faMoon, fas, faSearch, faSun } from '@fortawesome/free-solid-svg-icons';
 
 import { ThemingContext, ThemingProvider } from './context/theming.context';
 
-import { ThemeProvider, createGlobalStyle, ITheme } from 'styled-components';
+import { ThemeProvider, createGlobalStyle, DefaultTheme } from 'styled-components';
 import { darkTheme, lightTheme } from './themes';
 import HomePage from './pages/home.page';
+
+library.add(fab, fas, faMoon, faSun, faSearch);
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -16,16 +21,44 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Nunito Sans' sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     margin-top: 8rem;
-    transition: all 0.5 ease;
+    transition: all 0.3s ease;
 		background-color: ${lightTheme.colors.background}
   }
+
+	button {
+		border: none;
+		&:hover {
+			cursor: pointer;
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	input {
+		border: none;
+		font-family: inherit;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	select {
+		border: none;
+
+		&:focus {
+			outline: none;
+		}
+	}
 `;
 
 function App(): ReactElement {
 	const themeContext: string = useContext(ThemingContext);
-	const theme: ITheme = themeContext === 'dark-theme' ? darkTheme : lightTheme;
+	const theme: DefaultTheme = themeContext === 'dark-theme' ? darkTheme : lightTheme;
 
 	return (
 		<ThemingProvider>

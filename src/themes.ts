@@ -1,6 +1,6 @@
-import { ITheme } from 'styled-components';
+import { DefaultTheme } from 'styled-components';
 
-export const lightTheme: ITheme = {
+export const lightTheme: DefaultTheme = {
 	colors: {
 		primary: '#ffa000',
 		background: 'hsl(0, 0%, 95%)',
@@ -11,7 +11,7 @@ export const lightTheme: ITheme = {
 	}
 };
 
-export const darkTheme: ITheme = {
+export const darkTheme: DefaultTheme = {
 	colors: {
 		primary: '#ffc400',
 		background: 'hsl(207, 26%, 17%)',

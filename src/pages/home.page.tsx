@@ -1,11 +1,31 @@
 import React, { ReactElement } from 'react';
+import styled from 'styled-components';
 
-interface Props {}
+import { Container } from '../components/container.component';
+import Filter from '../components/filter.component.';
+import Navbar from '../components/navbar.component';
+import Search from '../components/search.component';
+
+const FilterContainer = styled.div`
+	@media (min-width: 768px) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+`;
 
 export default function HomePage(): ReactElement {
 	return (
 		<>
-			<h1> Home Page!! </h1>
+			<header>
+				<Navbar />
+				<Container>
+					<FilterContainer>
+						<Search />
+						<Filter />
+					</FilterContainer>
+				</Container>
+			</header>
 		</>
 	);
 }
