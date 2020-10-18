@@ -1,5 +1,14 @@
 import React, { ReactElement } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const fadeIn = keyframes`
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+`;
 
 export const CardContainer = styled.div`
 	margin-top: 2rem;
@@ -26,8 +35,11 @@ const CardStyled = styled.div`
 	color: ${(props) => props.theme.colors.foreground};
 	transition: all 0.3s ease;
 
+	animation: ${fadeIn} 1s;
+
 	&:hover {
 		cursor: pointer;
+		transform: scale(1.08);
 	}
 
 	@media (min-width: 768px) {
