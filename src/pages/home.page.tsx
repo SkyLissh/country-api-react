@@ -11,15 +11,29 @@ import { Country } from '../models/country.model';
 
 export default function HomePage(): ReactElement {
 	const [countries, setCountries] = useState<Country[]>([]);
+	const [countryName, setCountryName] = useState<string>('');
 
 	const getAllCountries = async () => {
 		const res = await ApiService.getAllCountries();
 		if (res) setCountries(res);
 	};
 
+	const getCountriesByRegion = async (value: string): Promise<void> => {
+		const res = await ApiService.getCountriesByRegion(value);
+		if (res) setCountries(res);
+	};
+
+	const getCountryByName = (value: string): void => {
+		setCountryName(value);
+	};
+
+	let filteredCountries = countries.filter((country) => {
+		return country.name.toLowerCase().indexOf(countryName.toLowerCase()) !== -1;
+	});
+
 	useEffect(() => {
 		getAllCountries();
-	}, [countries]);
+	}, []);
 
 	return (
 		<>
@@ -27,16 +41,17 @@ export default function HomePage(): ReactElement {
 				<Navbar />
 				<Container>
 					<FilterContainer>
-						<Search />
-						<Filter />
+						<Search getCountryName={getCountryByName} />
+						<Filter getRegion={getCountriesByRegion} />
 					</FilterContainer>
 				</Container>
 			</header>
 			<main>
 				<Container>
 					<CardContainer>
-						{countries.map((country) => (
+						{filteredCountries.map((country) => (
 							<Card
+								key={country.name}
 								img={country.flag}
 								country={country.name}
 								population={country.population}
