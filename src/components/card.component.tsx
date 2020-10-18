@@ -65,7 +65,7 @@ const CardBody = styled.div`
 interface Props {
 	img: string;
 	country: string;
-	population: string;
+	population: number;
 	region: string;
 	capital: string;
 }
