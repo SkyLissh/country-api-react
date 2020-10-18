@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { ApiService } from '../services/api.service';
 
 import { Container } from '../components/container.component';
-import Filter, { FilterContainer } from '../components/filter.component.';
+import Filter, { FilterContainer } from '../components/filter.component';
 import Navbar from '../components/navbar.component';
 import Search from '../components/search.component';
 import Card, { CardContainer } from '../components/card.component';
