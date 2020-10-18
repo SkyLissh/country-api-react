@@ -41,10 +41,23 @@ const SearchInput = styled.input`
 	}
 `;
 
-export default function Search(): ReactElement {
+interface Props {
+	getCountryName: (countryName: string) => void;
+}
+
+export default function Search(props: Props): ReactElement {
+	const getCountryName = (e: React.FormEvent<HTMLInputElement>): void => {
+		const name = e.target as HTMLInputElement;
+		props.getCountryName(name.value);
+	};
+
 	return (
 		<SearchContainer>
-			<SearchInput type="search" placeholder="Search for a country..." />
+			<SearchInput
+				type="search"
+				placeholder="Search for a country..."
+				onInput={getCountryName}
+			/>
 			<Button fab>
 				<FontAwesomeIcon icon={['fas', 'search']} />
 			</Button>
