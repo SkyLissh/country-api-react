@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { ApiService } from '../services/api.service';
 
@@ -12,6 +13,8 @@ import { Country } from '../models/country.model';
 export default function HomePage(): ReactElement {
 	const [countries, setCountries] = useState<Country[]>([]);
 	const [countryName, setCountryName] = useState<string>('');
+
+	const history = useHistory();
 
 	const getAllCountries = async () => {
 		const res = await ApiService.getAllCountries();
@@ -30,6 +33,10 @@ export default function HomePage(): ReactElement {
 	let filteredCountries = countries.filter((country) => {
 		return country.name.toLowerCase().indexOf(countryName.toLowerCase()) !== -1;
 	});
+
+	const goDetailsPage = (country: string): void => {
+		history.push(`details/${country.toLowerCase()}`);
+	};
 
 	useEffect(() => {
 		getAllCountries();
@@ -51,6 +58,7 @@ export default function HomePage(): ReactElement {
 					<CardContainer>
 						{filteredCountries.map((country) => (
 							<Card
+								onClick={() => goDetailsPage(country.name)}
 								key={country.name}
 								img={country.flag}
 								country={country.name}
