@@ -17,13 +17,11 @@ const StyledNavbar = styled.nav`
 
 	background-color: ${(props) => props.theme.colors.element};
 	box-shadow: 0px -10px 20px ${(props) => props.theme.colors.shadow};
-	transition: all 0.3 ease;
+	transition: all 0.3s ease-in;
 `;
 
 const NavbarContent = styled.div`
 	margin: 0 1rem;
-
-	transition: all 0.3 ease-in;
 
 	display: flex;
 	justify-content: space-between;
@@ -55,7 +53,11 @@ export default function Navbar(): ReactElement {
 				<NavbarContent>
 					<h1>Where in the world?</h1>
 					<Button fab onClick={changeTheme}>
-						<FontAwesomeIcon icon={['fas', 'moon']} />
+						{theme === lightTheme ? (
+							<FontAwesomeIcon icon={['fas', 'moon']} />
+						) : (
+							<FontAwesomeIcon icon={['fas', 'sun']} />
+						)}
 					</Button>
 				</NavbarContent>
 			</StyledNavbar>

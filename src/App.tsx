@@ -66,7 +66,7 @@ function App(): ReactElement {
 						<Route path="/" exact>
 							<HomePage />
 						</Route>
-						<Route path="/details"></Route>
+						<Route path="/details/:countryName"></Route>
 					</Switch>
 				</Theme>
 			</Router>

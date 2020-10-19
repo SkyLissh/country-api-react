@@ -80,11 +80,13 @@ interface Props {
 	population: number;
 	region: string;
 	capital: string;
+
+	onClick: () => void;
 }
 
 export default function Card(props: Props): ReactElement {
 	return (
-		<CardStyled>
+		<CardStyled onClick={props.onClick}>
 			<CardImage>
 				<img src={props.img} alt="flag" />
 			</CardImage>
@@ -94,7 +96,7 @@ export default function Card(props: Props): ReactElement {
 				<div>
 					<p>
 						<span>Population: </span>
-						{props.population}
+						{props.population.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
 					</p>
 					<p>
 						<span>Region: </span>
