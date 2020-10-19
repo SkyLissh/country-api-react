@@ -1,8 +1,10 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Button } from './button.component';
+import { ThemingContext } from '../context/theming.context';
+import { darkTheme, lightTheme } from '../themes';
 
 const StyledNavbar = styled.nav`
 	z-index: 100;
@@ -41,12 +43,18 @@ const NavbarContent = styled.div`
 `;
 
 export default function Navbar(): ReactElement {
+	const [theme, setTheme] = useContext(ThemingContext);
+
+	const changeTheme = (): void => {
+		theme === lightTheme ? setTheme(darkTheme) : setTheme(lightTheme);
+	};
+
 	return (
 		<>
 			<StyledNavbar>
 				<NavbarContent>
 					<h1>Where in the world?</h1>
-					<Button fab>
+					<Button fab onClick={changeTheme}>
 						<FontAwesomeIcon icon={['fas', 'moon']} />
 					</Button>
 				</NavbarContent>

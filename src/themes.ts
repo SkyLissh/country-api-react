@@ -2,7 +2,7 @@ import { DefaultTheme } from 'styled-components';
 
 export const lightTheme: DefaultTheme = {
 	colors: {
-		primary: '#ffa000',
+		primary: '#1976D2',
 		background: 'hsl(0, 0%, 95%)',
 		foreground: 'hsl(200, 15%, 8%)',
 		placeholder: 'hsl(0, 0%, 52%)',
@@ -13,7 +13,7 @@ export const lightTheme: DefaultTheme = {
 
 export const darkTheme: DefaultTheme = {
 	colors: {
-		primary: '#ffc400',
+		primary: '#448AFF',
 		background: 'hsl(207, 26%, 17%)',
 		foreground: 'hsl(0, 0%, 95%)',
 		placeholder: 'hsl(208, 16%, 70%)',

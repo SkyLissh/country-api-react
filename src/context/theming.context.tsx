@@ -1,11 +1,19 @@
-import React, { Context, createContext, ReactElement } from 'react';
+import React, { createContext, ReactElement, useState } from 'react';
+import { DefaultTheme } from 'styled-components';
+import { lightTheme } from '../themes';
 
 interface Props {
 	children: ReactElement;
 }
 
-export const ThemingContext: Context<string> = createContext('light-theme');
+export const ThemingContext = createContext<
+	[DefaultTheme, React.Dispatch<React.SetStateAction<DefaultTheme>>]
+>([lightTheme, () => null]);
 
 export function ThemingProvider(props: Props): ReactElement {
-	return <ThemingContext.Provider value=""> {props.children} </ThemingContext.Provider>;
+	const darkMode = useState<DefaultTheme>(lightTheme);
+
+	return (
+		<ThemingContext.Provider value={darkMode}> {props.children} </ThemingContext.Provider>
+	);
 }

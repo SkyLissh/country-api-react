@@ -5,6 +5,8 @@ interface ButtonProps {
 }
 
 export const Button = styled.button<ButtonProps>`
+	position: relative;
+
 	padding: 1rem 2rem;
 
 	background-color: ${(props) => props.theme.colors.primary};

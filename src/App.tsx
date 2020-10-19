@@ -1,13 +1,13 @@
-import React, { ReactElement, useContext } from 'react';
+import React, { ReactElement } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faMoon, fas, faSearch, faSun } from '@fortawesome/free-solid-svg-icons';
 
-import { ThemingContext, ThemingProvider } from './context/theming.context';
+import Theme from './context/theme.provider';
+import { ThemingProvider } from './context/theming.context';
 
-import { ThemeProvider, createGlobalStyle, DefaultTheme } from 'styled-components';
-import { darkTheme, lightTheme } from './themes';
+import { createGlobalStyle } from 'styled-components';
 import HomePage from './pages/home.page';
 
 library.add(fab, fas, faMoon, faSun, faSearch);
@@ -23,8 +23,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Nunito Sans', sans-serif;
     margin-top: 8rem;
-    transition: all 0.3s ease;
-		background-color: ${lightTheme.colors.background}
+    transition: all 0.3s ease-in;
+		background-color: ${(props) => props.theme.colors.background};
   }
 
 	button {
@@ -57,21 +57,18 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App(): ReactElement {
-	const themeContext: string = useContext(ThemingContext);
-	const theme: DefaultTheme = themeContext === 'dark-theme' ? darkTheme : lightTheme;
-
 	return (
 		<ThemingProvider>
 			<Router>
-				<GlobalStyle />
-				<ThemeProvider theme={theme}>
+				<Theme>
+					<GlobalStyle />
 					<Switch>
 						<Route path="/" exact>
 							<HomePage />
 						</Route>
 						<Route path="/details"></Route>
 					</Switch>
-				</ThemeProvider>
+				</Theme>
 			</Router>
 		</ThemingProvider>
 	);
