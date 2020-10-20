@@ -27,6 +27,7 @@ export default function DetailsPage(): ReactElement {
 	};
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		getCountryByName(countryName);
 	}, [countryName]);
 

@@ -44,7 +44,13 @@ export default function Navbar(): ReactElement {
 	const [theme, setTheme] = useContext(ThemingContext);
 
 	const changeTheme = (): void => {
-		theme === lightTheme ? setTheme(darkTheme) : setTheme(lightTheme);
+		if (theme.colors.primary === lightTheme.colors.primary) {
+			setTheme(darkTheme);
+			localStorage.setItem('theme', JSON.stringify(darkTheme));
+		} else {
+			setTheme(lightTheme);
+			localStorage.setItem('theme', JSON.stringify(lightTheme));
+		}
 	};
 
 	return (
@@ -53,7 +59,7 @@ export default function Navbar(): ReactElement {
 				<NavbarContent>
 					<h1>Where in the world?</h1>
 					<Button fab onClick={changeTheme}>
-						{theme === lightTheme ? (
+						{theme.colors.primary === lightTheme.colors.primary ? (
 							<FontAwesomeIcon icon={['fas', 'moon']} />
 						) : (
 							<FontAwesomeIcon icon={['fas', 'sun']} />
