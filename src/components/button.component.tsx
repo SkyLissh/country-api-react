@@ -18,7 +18,7 @@ export const Button = styled.button<ButtonProps>`
 	font-size: 1.3rem;
 	font-weight: 600;
 
-	i {
+	svg {
 		margin-right: 1rem;
 	}
 
@@ -36,7 +36,7 @@ export const Button = styled.button<ButtonProps>`
 			justify-content: center;
 			align-items: center;
 
-			i {
+			svg {
 				margin: 0;
 			}
 		`}

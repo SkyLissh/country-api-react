@@ -5,7 +5,6 @@ import { ApiService } from '../services/api.service';
 
 import { Container } from '../components/container.component';
 import Filter, { FilterContainer } from '../components/filter.component';
-import Navbar from '../components/navbar.component';
 import Search from '../components/search.component';
 import Card, { CardContainer } from '../components/card.component';
 import { Country } from '../models/country.model';
@@ -16,7 +15,7 @@ export default function HomePage(): ReactElement {
 
 	const history = useHistory();
 
-	const getAllCountries = async () => {
+	const getAllCountries = async (): Promise<void> => {
 		const res = await ApiService.getAllCountries();
 		if (res) setCountries(res);
 	};
@@ -45,7 +44,6 @@ export default function HomePage(): ReactElement {
 	return (
 		<>
 			<header>
-				<Navbar />
 				<Container>
 					<FilterContainer>
 						<Search getCountryName={getCountryByName} />

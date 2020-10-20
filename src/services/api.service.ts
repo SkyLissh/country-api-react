@@ -26,8 +26,10 @@ export class ApiService {
 
 	static async getCountryByName(name: string): Promise<Country | null> {
 		try {
-			const res = await Axios.get<Country>(`https://restcountries.eu/rest/v2/name/${name}`);
-			return res.data;
+			const res = await Axios.get<Country[]>(
+				`https://restcountries.eu/rest/v2/name/${name}`
+			);
+			return res.data[0];
 		} catch (error) {
 			console.error('Error Get Country By Name: ', error);
 			return null;
